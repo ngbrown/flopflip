@@ -37,3 +37,15 @@ it('should indicate a feature being enabled', async () => {
 
   expect(rendered.queryByText('Is enabled: Yes')).toBeInTheDocument();
 });
+
+describe('when rendering multiple configure components', () => {
+  it('should not throw an act warning', () => {
+    Array.from(Array(10).keys()).forEach(async () => {
+      const rendered = render(<TestComponent />);
+
+      await rendered.waitUntilReady();
+
+      expect(rendered.queryByText('Is enabled: Yes')).toBeInTheDocument();
+    });
+  });
+});
